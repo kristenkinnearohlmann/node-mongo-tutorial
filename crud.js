@@ -10,6 +10,18 @@ async function createListing(client, newListing) {
   );
 }
 
+async function createMultipleListings(client, newListings) {
+  const result = await client
+    .db("sample_airbnb")
+    .collection("listingsAndReviews")
+    .insertMany(newListings);
+
+  console.log(
+    `${result.insertedCount} new listing(s) created with the following id(s):`
+  );
+  console.log(result.insertedIds);
+}
+
 async function main() {
   const uri =
     "mongodb+srv://admin:nPxSHbXraKBy8cc2@cluster0.v2jnc.mongodb.net/default?retryWrites=true&w=majority";
@@ -18,12 +30,38 @@ async function main() {
 
   try {
     await client.connect();
-    await createListing(client, {
-      name: "Lovely loft",
-      summary: "A charming loft in Paris",
-      bedrooms: 1,
-      bathrooms: 1,
-    });
+    // await createListing(client, {
+    //   name: "Lovely loft",
+    //   summary: "A charming loft in Paris",
+    //   bedrooms: 1,
+    //   bathrooms: 1,
+    // });
+    await createMultipleListings(
+      client,
+      {
+        name: "Infinite Views",
+        summary: "Modern home with infinite views from the infinity pool",
+        property_type: "House",
+        bedrooms: 5,
+        bathrooms: 4.5,
+        beds: 5,
+      },
+      {
+        name: "Private room in London",
+        property_type: "Apartment",
+        bedrooms: 1,
+        bathrooms: 1,
+      },
+      {
+        name: "Beautiful Beach House",
+        summary:
+          "Enjoy relaxed beach living in this house with a private beach",
+        bedrooms: 4,
+        bathrooms: 2.5,
+        beds: 7,
+        last_review: new Date(),
+      }
+    );
   } finally {
     await client.close();
   }
