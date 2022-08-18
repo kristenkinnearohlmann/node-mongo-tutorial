@@ -24,7 +24,7 @@ async function createMultipleListings(client, newListings) {
 
 async function main() {
   const uri =
-    "mongodb+srv://admin:nPxSHbXraKBy8cc2@cluster0.v2jnc.mongodb.net/default?retryWrites=true&w=majority";
+    "mongodb+srv://admin:@cluster0.v2jnc.mongodb.net/default?retryWrites=true&w=majority";
 
   const client = new MongoClient(uri);
 
@@ -39,7 +39,7 @@ async function main() {
     await createMultipleListings(
       client,
       {
-        name: "Infinite Views",
+        name: "Infinite Views 2",
         summary: "Modern home with infinite views from the infinity pool",
         property_type: "House",
         bedrooms: 5,
@@ -47,13 +47,13 @@ async function main() {
         beds: 5,
       },
       {
-        name: "Private room in London",
+        name: "Private room in London 2",
         property_type: "Apartment",
         bedrooms: 1,
         bathrooms: 1,
       },
       {
-        name: "Beautiful Beach House",
+        name: "Beautiful Beach House 2",
         summary:
           "Enjoy relaxed beach living in this house with a private beach",
         bedrooms: 4,
