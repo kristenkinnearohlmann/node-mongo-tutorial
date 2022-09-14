@@ -38,7 +38,7 @@ async function main() {
     // });
     await createMultipleListings(client, [
       {
-        name: "Infinite Views 2",
+        name: "Infinite Views 3",
         summary: "Modern home with infinite views from the infinity pool",
         property_type: "House",
         bedrooms: 5,
@@ -46,13 +46,13 @@ async function main() {
         beds: 5,
       },
       {
-        name: "Private room in London 2",
+        name: "Private room in London 3",
         property_type: "Apartment",
         bedrooms: 1,
         bathrooms: 1,
       },
       {
-        name: "Beautiful Beach House 2",
+        name: "Beautiful Beach House 3",
         summary:
           "Enjoy relaxed beach living in this house with a private beach",
         bedrooms: 4,
