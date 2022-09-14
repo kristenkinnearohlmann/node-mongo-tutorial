@@ -24,7 +24,7 @@ async function createMultipleListings(client, newListings) {
 
 async function main() {
   const uri =
-    "mongodb+srv://admin:LF7kBB2iK8x5@cluster0.v2jnc.mongodb.net/?retryWrites=true&w=majority";
+    "mongodb+srv://admin:@cluster0.v2jnc.mongodb.net/?retryWrites=true&w=majority";
 
   const client = new MongoClient(uri);
 
