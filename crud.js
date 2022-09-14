@@ -22,6 +22,22 @@ async function createMultipleListings(client, newListings) {
   console.log(result.insertedIds);
 }
 
+async function findOneListingByName(client, nameOfListing) {
+  const result = await client
+    .db("sample_airbnb")
+    .collection("listingsAndReviews")
+    .findOne({ name: nameOfListing });
+
+  if (result) {
+    console.log(
+      `Found a listing in the collection with the name '${nameOfListing}':`
+    );
+    console.log(result);
+  } else {
+    console.log(`No listings found with the name '${nameOfListing}'`);
+  }
+}
+
 async function main() {
   const uri =
     "mongodb+srv://admin:@cluster0.v2jnc.mongodb.net/?retryWrites=true&w=majority";
@@ -36,31 +52,32 @@ async function main() {
     //   bedrooms: 1,
     //   bathrooms: 1,
     // });
-    await createMultipleListings(client, [
-      {
-        name: "Infinite Views 3",
-        summary: "Modern home with infinite views from the infinity pool",
-        property_type: "House",
-        bedrooms: 5,
-        bathrooms: 4.5,
-        beds: 5,
-      },
-      {
-        name: "Private room in London 3",
-        property_type: "Apartment",
-        bedrooms: 1,
-        bathrooms: 1,
-      },
-      {
-        name: "Beautiful Beach House 3",
-        summary:
-          "Enjoy relaxed beach living in this house with a private beach",
-        bedrooms: 4,
-        bathrooms: 2.5,
-        beds: 7,
-        last_review: new Date(),
-      },
-    ]);
+    // await createMultipleListings(client, [
+    //   {
+    //     name: "Infinite Views 3",
+    //     summary: "Modern home with infinite views from the infinity pool",
+    //     property_type: "House",
+    //     bedrooms: 5,
+    //     bathrooms: 4.5,
+    //     beds: 5,
+    //   },
+    //   {
+    //     name: "Private room in London 3",
+    //     property_type: "Apartment",
+    //     bedrooms: 1,
+    //     bathrooms: 1,
+    //   },
+    //   {
+    //     name: "Beautiful Beach House 3",
+    //     summary:
+    //       "Enjoy relaxed beach living in this house with a private beach",
+    //     bedrooms: 4,
+    //     bathrooms: 2.5,
+    //     beds: 7,
+    //     last_review: new Date(),
+    //   },
+    // ]);
+    await findOneListingByName(client, "Infinite Views 3");
   } finally {
     await client.close();
   }
