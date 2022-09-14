@@ -24,7 +24,7 @@ async function createMultipleListings(client, newListings) {
 
 async function main() {
   const uri =
-    "mongodb+srv://admin:@cluster0.v2jnc.mongodb.net/default?retryWrites=true&w=majority";
+    "mongodb+srv://admin:LF7kBB2iK8x5@cluster0.v2jnc.mongodb.net/?retryWrites=true&w=majority";
 
   const client = new MongoClient(uri);
 
@@ -36,32 +36,32 @@ async function main() {
     //   bedrooms: 1,
     //   bathrooms: 1,
     // });
-    await createMultipleListings(
-      client,
-      {
-        name: "Infinite Views 2",
-        summary: "Modern home with infinite views from the infinity pool",
-        property_type: "House",
-        bedrooms: 5,
-        bathrooms: 4.5,
-        beds: 5,
-      },
-      {
-        name: "Private room in London 2",
-        property_type: "Apartment",
-        bedrooms: 1,
-        bathrooms: 1,
-      },
-      {
-        name: "Beautiful Beach House 2",
-        summary:
-          "Enjoy relaxed beach living in this house with a private beach",
-        bedrooms: 4,
-        bathrooms: 2.5,
-        beds: 7,
-        last_review: new Date(),
-      }
-    );
+    // await createMultipleListings(
+    //   client,
+    //   {
+    //     name: "Infinite Views 2",
+    //     summary: "Modern home with infinite views from the infinity pool",
+    //     property_type: "House",
+    //     bedrooms: 5,
+    //     bathrooms: 4.5,
+    //     beds: 5,
+    //   },
+    //   {
+    //     name: "Private room in London 2",
+    //     property_type: "Apartment",
+    //     bedrooms: 1,
+    //     bathrooms: 1,
+    //   },
+    //   {
+    //     name: "Beautiful Beach House 2",
+    //     summary:
+    //       "Enjoy relaxed beach living in this house with a private beach",
+    //     bedrooms: 4,
+    //     bathrooms: 2.5,
+    //     beds: 7,
+    //     last_review: new Date(),
+    //   }
+    // );
   } finally {
     await client.close();
   }
