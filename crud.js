@@ -83,6 +83,17 @@ async function findListingsWithMinimumBedroomsBathroomsAndMostRecentReviews(
   }
 }
 
+async function updateListingByName(client, nameOfListing, updatedListing) {
+  const result = await client
+    .db("sample_airbnb")
+    .collection("listingsAndReviews")
+    .updateOne({ name: nameOfListing }, { $set: updatedListing });
+
+  console.log(result);
+  console.log(`${result.matchedCount} document(s) matched the query criteria.`);
+  console.log(`${result.modifiedCount} document(s) was/were updated.`);
+}
+
 async function main() {
   const uri =
     "mongodb+srv://admin:@cluster0.v2jnc.mongodb.net/?retryWrites=true&w=majority";
@@ -123,10 +134,14 @@ async function main() {
     //   },
     // ]);
     // await findOneListingByName(client, "Infinite Views 3");
-    await findListingsWithMinimumBedroomsBathroomsAndMostRecentReviews(client, {
-      minimumNumberOfBedrooms: 4,
-      minimumNumberOfBathrooms: 2,
-      maximumNumberOfResults: 5,
+    // await findListingsWithMinimumBedroomsBathroomsAndMostRecentReviews(client, {
+    //   minimumNumberOfBedrooms: 4,
+    //   minimumNumberOfBathrooms: 2,
+    //   maximumNumberOfResults: 5,
+    // });
+    await updateListingByName(client, "Infinite Views 3", {
+      bedrooms: 6,
+      beds: 8,
     });
   } finally {
     await client.close();
