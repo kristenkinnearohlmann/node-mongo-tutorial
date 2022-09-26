@@ -1,27 +1,5 @@
 const { MongoClient } = require("mongodb");
-const { createListing } = require("./functions");
-
-// async function createListing(client, newListing) {
-//   const result = await client
-//     .db("sample_airbnb")
-//     .collection("listingsAndReviews")
-//     .insertOne(newListing);
-//   console.log(
-//     `New Listing created with the following id: ${result.insertedId}`
-//   );
-// }
-
-async function createMultipleListings(client, newListings) {
-  const result = await client
-    .db("sample_airbnb")
-    .collection("listingsAndReviews")
-    .insertMany(newListings);
-
-  console.log(
-    `${result.insertedCount} new listing(s) created with the following id(s):`
-  );
-  console.log(result.insertedIds);
-}
+const { createListing, createMultipleListings } = require("./functions");
 
 async function findOneListingByName(client, nameOfListing) {
   const result = await client
@@ -109,31 +87,31 @@ async function main() {
     //   bedrooms: 1,
     //   bathrooms: 1,
     // });
-    // await createMultipleListings(client, [
-    //   {
-    //     name: "Infinite Views 3",
-    //     summary: "Modern home with infinite views from the infinity pool",
-    //     property_type: "House",
-    //     bedrooms: 5,
-    //     bathrooms: 4.5,
-    //     beds: 5,
-    //   },
-    //   {
-    //     name: "Private room in London 3",
-    //     property_type: "Apartment",
-    //     bedrooms: 1,
-    //     bathrooms: 1,
-    //   },
-    //   {
-    //     name: "Beautiful Beach House 3",
-    //     summary:
-    //       "Enjoy relaxed beach living in this house with a private beach",
-    //     bedrooms: 4,
-    //     bathrooms: 2.5,
-    //     beds: 7,
-    //     last_review: new Date(),
-    //   },
-    // ]);
+    await createMultipleListings(client, [
+      {
+        name: "Infinite Views 4",
+        summary: "Modern home with infinite views from the infinity pool",
+        property_type: "House",
+        bedrooms: 5,
+        bathrooms: 4.5,
+        beds: 5,
+      },
+      {
+        name: "Private room in London 4",
+        property_type: "Apartment",
+        bedrooms: 1,
+        bathrooms: 1,
+      },
+      {
+        name: "Beautiful Beach House 4",
+        summary:
+          "Enjoy relaxed beach living in this house with a private beach",
+        bedrooms: 4,
+        bathrooms: 2.5,
+        beds: 7,
+        last_review: new Date(),
+      },
+    ]);
     // await findOneListingByName(client, "Infinite Views 3");
     // await findListingsWithMinimumBedroomsBathroomsAndMostRecentReviews(client, {
     //   minimumNumberOfBedrooms: 4,
