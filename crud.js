@@ -1,14 +1,15 @@
 const { MongoClient } = require("mongodb");
+const { createListing } = require("./functions");
 
-async function createListing(client, newListing) {
-  const result = await client
-    .db("sample_airbnb")
-    .collection("listingsAndReviews")
-    .insertOne(newListing);
-  console.log(
-    `New Listing created with the following id: ${result.insertedId}`
-  );
-}
+// async function createListing(client, newListing) {
+//   const result = await client
+//     .db("sample_airbnb")
+//     .collection("listingsAndReviews")
+//     .insertOne(newListing);
+//   console.log(
+//     `New Listing created with the following id: ${result.insertedId}`
+//   );
+// }
 
 async function createMultipleListings(client, newListings) {
   const result = await client
@@ -103,7 +104,7 @@ async function main() {
   try {
     await client.connect();
     // await createListing(client, {
-    //   name: "Lovely loft",
+    //   name: "Lovely loft 2",
     //   summary: "A charming loft in Paris",
     //   bedrooms: 1,
     //   bathrooms: 1,
@@ -139,10 +140,10 @@ async function main() {
     //   minimumNumberOfBathrooms: 2,
     //   maximumNumberOfResults: 5,
     // });
-    await updateListingByName(client, "Infinite Views 3", {
-      bedrooms: 6,
-      beds: 8,
-    });
+    // await updateListingByName(client, "Infinite Views 3", {
+    //   bedrooms: 6,
+    //   beds: 8,
+    // });
   } finally {
     await client.close();
   }
