@@ -52,10 +52,10 @@ async function main() {
     //   minimumNumberOfBathrooms: 2,
     //   maximumNumberOfResults: 5,
     // });
-    await updateListingByName(client, "Infinite Views 3", {
-      bedrooms: 6, //6
-      beds: 8, //8
-    });
+    // await updateListingByName(client, "Infinite Views 3", {
+    //   bedrooms: 6, //6
+    //   beds: 8, //8
+    // });
   } finally {
     await client.close();
   }
