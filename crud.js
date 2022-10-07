@@ -6,6 +6,7 @@ const {
   findListingsWithMinimumBedroomsBathroomsAndMostRecentReviews,
   updateListingByName,
   upsertListingByName,
+  updateAllListingsToHavePropertyType,
 } = require("./functions");
 
 async function main() {
@@ -62,7 +63,8 @@ async function main() {
     //   bedrooms: 2,
     //   bathrooms: 1,
     // });
-    await upsertListingByName(client, "Cozy Cottage 3", { beds: 2 });
+    // await upsertListingByName(client, "Cozy Cottage 3", { beds: 2 });
+    await updateAllListingsToHavePropertyType(client);
   } finally {
     await client.close();
   }
