@@ -92,10 +92,30 @@ async function updateListingByName(client, nameOfListing, updatedListing) {
   console.log(`${result.modifiedCount} document(s) was/were updated.`);
 }
 
+async function upsertListingByName(client, nameOfListing, updatedListing) {
+  const result = await client
+    .db("sample_airbnb")
+    .collection("listingsAndReviews")
+    .updateOne(
+      { name: nameOfListing },
+      { $set: updatedListing },
+      { upsert: true }
+    );
+
+  console.log(`${result.matchedCount} document(s) matched the query criteria.`);
+
+  if (result.upsertedCount > 0) {
+    console.log(`One document was inserted with the id ${result.upsertedId}`);
+  } else {
+    console.log(`${result.modifiedCount} document(s) was/were updated.`);
+  }
+}
+
 module.exports = {
   createListing,
   createMultipleListings,
   findOneListingByName,
   findListingsWithMinimumBedroomsBathroomsAndMostRecentReviews,
   updateListingByName,
+  upsertListingByName,
 };
