@@ -7,6 +7,7 @@ const {
   updateListingByName,
   upsertListingByName,
   updateAllListingsToHavePropertyType,
+  deleteListingByName,
 } = require("./functions");
 
 async function main() {
@@ -64,7 +65,8 @@ async function main() {
     //   bathrooms: 1,
     // });
     // await upsertListingByName(client, "Cozy Cottage 3", { beds: 2 });
-    await updateAllListingsToHavePropertyType(client);
+    // await updateAllListingsToHavePropertyType(client);
+    await deleteListingByName(client, "Cozy Cottage");
   } finally {
     await client.close();
   }

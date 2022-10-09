@@ -141,4 +141,5 @@ module.exports = {
   updateListingByName,
   upsertListingByName,
   updateAllListingsToHavePropertyType,
+  deleteListingByName,
 };
